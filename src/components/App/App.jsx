@@ -1,19 +1,34 @@
 import axios from 'axios';
 import './App.css';
-import StudentForm from '../StudentForm/StudentForm.jsx';
-import StudentList from '../StudentList/StudentList.jsx';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import Home from '../Home/Home';
+import About from '../About/About';
+import AllStudents from '../AllStudents/AllStudents';
 
 function App() {
     return (
         <div className="App">
             <header className="App-header">
-            <h1 className="App-title">GitHub Student List</h1>
+                <Router>
+                    <h1 className="App-title">GitHub Student List</h1>
+                    <nav>
+                        <ul>
+                            <li><Link to='/'>Home</Link></li>
+                            <li><Link to='/about'>About</Link></li>
+                            <li><Link to='/allstudents'>All Students</Link></li>
+                        </ul>
+                    </nav>
+                    <Route exact path='/'>
+                        <Home/>
+                    </Route>
+                    <Route exact path='/about'>
+                        <About/>
+                    </Route>
+                    <Route exact path='/allstudents'>
+                        <AllStudents/>
+                    </Route>
+                </Router>
             </header>
-            <br/>
-            <StudentForm />
-
-            <p>Student list:</p>
-            <StudentList />
         </div>
     );
 }
